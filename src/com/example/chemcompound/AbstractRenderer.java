@@ -21,6 +21,8 @@
 package com.example.chemcompound;
 
 import java.awt.Rectangle;
+
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.
@@ -105,7 +107,7 @@ public abstract class AbstractRenderer<T extends IChemObject> {
      * Converts between model coordinates and screen coordinates.
      */
     protected AffineTransform transform;
-
+    protected Matrix matrix;
     public AbstractRenderer(RendererModel rendererModel) {
     	this.rendererModel = rendererModel;
     }
@@ -171,6 +173,7 @@ public abstract class AbstractRenderer<T extends IChemObject> {
             double[] dest = new double[2];
             double[] src = new double[] { screenX, screenY };
             transform.inverseTransform(src, 0, dest, 0, 1);
+            matrix.
             return new Point(dest[0], dest[1]);
         } catch (NoninvertibleTransformException n) {
             return new Point(0,0);
